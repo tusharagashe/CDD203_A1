@@ -11,10 +11,10 @@ def main():
     # Create instance of FastaParser
     aparser = FastaParser('data/test.fa')
     # Create instance of FastqParser
-        
+    qparser = FastqParser('data/test.fq')   
     # For each record of FastaParser, Transcribe the sequence
     # and print it to console
-       
+    aparser.get_record
     # For each record of FastqParser, Transcribe the sequence
     # and print it to console
 
