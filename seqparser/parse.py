@@ -105,7 +105,7 @@ class FastaParser(Parser):
         sequence = f_obj.readline().rstrip()
                 
         #error handling of incorrectly formatted files 
-        if '>' not in header:
+        if '>' not in header and header != '':
             return ValueError("Expected '>' symbol in header")
         
         return (header, sequence)
@@ -127,9 +127,11 @@ class FastqParser(Parser):
         quality = f_obj.readline().rstrip()
         
         #error handling of incorrectly formatted files 
-        if '@' not in header:
+        #checks if @ is present for all headers 
+        if '@' not in header and header != '':
             return ValueError("Expected '@' symbol in header")
-        if '+' not in sep:
+        #checks if seperator symbol is correctly in the third line of each entry
+        if '+' not in sep and sep != '':
             return ValueError("Expected '+' as seperator between sequence and quality score")
         
         return (header, sequence, quality)

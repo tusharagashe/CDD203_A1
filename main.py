@@ -17,16 +17,16 @@ def main():
     for record in aparser:
         print(transcribe(record[1]))
     # For each record of FastqParser, Transcribe the sequence
+    # and print it to console
     for record in qparser:
         print(transcribe(record[1]))   
-    # and print it to console
     # For each record of FastaParser, Reverse Transcribe the sequence
     # and print it to console
     for record in aparser:
         print(reverse_transcribe(record[1]))
     # For each record of FastqParser, Reverse Transcribe the sequence
     # and print it to console
-    for record in aparser:
+    for record in qparser:
         print(reverse_transcribe(record[1]))
 
 
