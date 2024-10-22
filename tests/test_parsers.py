@@ -28,8 +28,15 @@ def test_FastaParser():
     your FastaParser class and assert that it properly
     reads in the example Fasta File.
     """
-    pass
-
+    aparser = FastaParser('data/test.fa')
+    for record in aparser:
+        if '>' not in record[0]:
+            assert False
+        if not all(char in 'ACGT' for char in record[1]):
+            assert False
+    
+    assert True 
+    
 
 def test_FastqParser():
     """
@@ -38,4 +45,10 @@ def test_FastqParser():
     your FastqParser class and assert that it properly
     reads in the example Fastq File.
     """
-    pass
+    qparser = FastqParser('data/test.fq') 
+    for record in qparser:
+        if '@' not in record[0]:
+            assert False
+        if not all(char in 'ACGT' for char in record[1]):
+            assert False
+    assert True
