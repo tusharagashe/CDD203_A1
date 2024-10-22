@@ -14,16 +14,20 @@ def main():
     qparser = FastqParser('data/test.fq')   
     # For each record of FastaParser, Transcribe the sequence
     # and print it to console
-    aparser.get_record
+    for record in aparser:
+        print(transcribe(record[1]))
     # For each record of FastqParser, Transcribe the sequence
+    for record in qparser:
+        print(transcribe(record[1]))   
     # and print it to console
-
-
     # For each record of FastaParser, Reverse Transcribe the sequence
     # and print it to console
-       
+    for record in aparser:
+        print(reverse_transcribe(record[1]))
     # For each record of FastqParser, Reverse Transcribe the sequence
     # and print it to console
+    for record in aparser:
+        print(reverse_transcribe(record[1]))
 
 
 """

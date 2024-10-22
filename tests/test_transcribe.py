@@ -3,6 +3,7 @@
 from seqparser import (
         transcribe,
         reverse_transcribe)
+import pytest
 
 
 def test_freebie_transcribe_1():
@@ -20,18 +21,50 @@ def test_freebie_transcribe_2():
     """
     assert 1 != 2
 
-        
+#test if postiive case input works as intended 
 def test_transcribe():
     """
     TODO: Write your unit test for the
     transcribe function here.
     """
-    pass
+    test_seq = 'ACGT'
+    expected = 'UGCA'
+    assert transcribe(test_seq) == expected
+    
+#test if empty input returns empty 
+def test_transcribe_empty():
+    test_seq = ''
+    expected = ''
+    assert transcribe(test_seq) == expected
 
+#test if invalid string returns error 
+def test_transcribe_invalid_string():
+    test_seq = 'AHFE'
+    expected = ''
+    with pytest.raises(KeyError):
+        transcribe(test_seq)
 
+#test if postiive case input works as intended 
 def test_reverse_transcribe():
     """
     TODO: Write your unit test for the
-    reverse transcribe function here.
+    transcribe function here.
     """
-    pass
+    test_seq = 'ACGT'
+    expected = 'ACGU'
+    assert reverse_transcribe(test_seq) == expected
+    
+#test if empty input returns empty 
+def test_reverse_transcribe_empty():
+    test_seq = ''
+    expected = ''
+    assert reverse_transcribe(test_seq) == expected
+
+#test if invalid string returns error 
+def test_reverse_transcribe_invalid_string():
+    test_seq = 'AHFE'
+    expected = ''
+    with pytest.raises(KeyError):
+        reverse_transcribe(test_seq)
+
+

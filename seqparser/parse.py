@@ -77,6 +77,9 @@ class Parser:
             while True:
                 rec = self.get_record(f_obj)
                 # TODO: stop the loop
+                #check if readline has returned empty string indicating EOF
+                if rec[0] == '':
+                    break
                 yield rec
 
     def _get_record(self, f_obj: io.TextIOWrapper) -> Union[Tuple[str, str], Tuple[str, str, str]]:
@@ -98,6 +101,16 @@ class FastaParser(Parser):
         """
         TODO: returns the next fasta record as a 2-tuple of (header, sequence)
         """
+        header = f_obj.readline().rstrip()
+        sequence = f_obj.readline().rstrip()
+                
+        #error handling of incorrectly formatted files 
+        if '>' not in header:
+            return ValueError("Expected '>' symbol in header")
+        
+        return (header, sequence)
+        
+        
 
 
 class FastqParser(Parser):
@@ -108,4 +121,16 @@ class FastqParser(Parser):
         """
         TODO: returns the next fastq record as a 3-tuple of (header, sequence, quality)
         """
+        header = f_obj.readline().rstrip()
+        sequence = f_obj.readline().rstrip()
+        sep = f_obj.readline().rstrip()
+        quality = f_obj.readline().rstrip()
+        
+        #error handling of incorrectly formatted files 
+        if '@' not in header:
+            return ValueError("Expected '@' symbol in header")
+        if '+' not in sep:
+            return ValueError("Expected '+' as seperator between sequence and quality score")
+        
+        return (header, sequence, quality)
 
