@@ -41,7 +41,7 @@ def test_transcribe_empty():
 def test_transcribe_invalid_string():
     test_seq = 'AHFE'
     expected = ''
-    with pytest.raises(KeyError):
+    with pytest.raises(ValueError):
         transcribe(test_seq)
 
 #test if postive case input works as intended 
@@ -64,7 +64,7 @@ def test_reverse_transcribe_empty():
 def test_reverse_transcribe_invalid_string():
     test_seq = 'AHFE'
     expected = ''
-    with pytest.raises(KeyError):
+    with pytest.raises(ValueError):
         reverse_transcribe(test_seq)
 
 

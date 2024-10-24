@@ -8,10 +8,11 @@ def transcribe(seq: str) -> str:
     """
     #creates a dictionary to map nucleotides from dna to rna 
     complements = {"A":"U", "C":"G", "G":"C", "T":"A"}
-    complement_seq = ""
     #loops through input sequence and adds appropriate mapped nucleotide to complement sequence
-    for aa in seq:
-        complement_seq += complements[aa] 
+    try:
+        complement_seq = "".join(complements[aa] for aa in seq)
+    except(KeyError):
+        raise ValueError("Invalid nuceleotide in sequence only use A,C,G, or T")
     return complement_seq
 
 
