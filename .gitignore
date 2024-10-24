@@ -1,0 +1,6 @@
+.vscode/launch.json
+.coverage
+.vscode/settings.json
+__pycache__/
+seqparser/__pycache__/
+tests/__pycache__/

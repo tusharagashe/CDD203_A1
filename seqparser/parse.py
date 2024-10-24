@@ -101,10 +101,12 @@ class FastaParser(Parser):
         """
         TODO: returns the next fasta record as a 2-tuple of (header, sequence)
         """
+        #reads every entry 2 lines at a time seperating out into header and sequence
         header = f_obj.readline().rstrip()
         sequence = f_obj.readline().rstrip()
                 
-        #error handling of incorrectly formatted files 
+        #error handling of incorrectly formatted entry headers, error handling
+        #for sequence is in transcirbe functions 
         if '>' not in header and header != '':
             return ValueError("Expected '>' symbol in header")
         
@@ -126,13 +128,12 @@ class FastqParser(Parser):
         sep = f_obj.readline().rstrip()
         quality = f_obj.readline().rstrip()
         
-        #error handling of incorrectly formatted files 
+        #error handling of incorrectly formatted files. sequence error handling occurs in transcribe 
         #checks if @ is present for all headers 
         if '@' not in header and header != '':
             return ValueError("Expected '@' symbol in header")
         #checks if seperator symbol is correctly in the third line of each entry
-        if '+' not in sep and sep != '':
-            return ValueError("Expected '+' as seperator between sequence and quality score")
+        if sep != '+' and sep != '':
+            return ValueError("Expected only '+' as seperator between sequence and quality score")
         
         return (header, sequence, quality)
-

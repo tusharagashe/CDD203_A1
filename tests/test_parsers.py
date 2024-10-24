@@ -3,6 +3,7 @@
 from seqparser import (
         FastaParser,
         FastqParser)
+import pytest
 
 
 def test_freebie_parser_1():
@@ -20,7 +21,7 @@ def test_freebie_parser_2():
     """
     assert 1 != 2
 
-        
+#test if valid fasta files parses correctly 
 def test_FastaParser():
     """
     TODO: Write your unit test for your FastaParser
@@ -37,7 +38,7 @@ def test_FastaParser():
     
     assert True 
     
-
+#test if valid fastq file parses correctly 
 def test_FastqParser():
     """
     TODO: Write your unit test for your FastqParser
@@ -52,3 +53,24 @@ def test_FastqParser():
         if not all(char in 'ACGT' for char in record[1]):
             assert False
     assert True
+    
+#test if valid fasta files parses correctly 
+def test_FastaParser_InvalidEntry():
+    aparser = FastaParser('data/negtest.fa')
+    with pytest.raises(TypeError):
+        for record in aparser:
+            pass
+    
+
+#test if valid fasta files parses correctly 
+def test_FastqParser_InvalidEntry():
+    qparser = FastqParser('data/negtest.fq')
+    with pytest.raises(TypeError):
+        for record in qparser:
+            pass
+
+def test_FastqParser_InvalidEntry2():
+    qparser = FastqParser('data/negtest2.fq')
+    with pytest.raises(TypeError):
+        for record in qparser:
+            pass

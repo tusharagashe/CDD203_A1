@@ -31,7 +31,7 @@ def test_transcribe():
     expected = 'UGCA'
     assert transcribe(test_seq) == expected
     
-#test if empty input returns empty 
+#test if empty input returns empty output
 def test_transcribe_empty():
     test_seq = ''
     expected = ''
@@ -44,7 +44,7 @@ def test_transcribe_invalid_string():
     with pytest.raises(KeyError):
         transcribe(test_seq)
 
-#test if postiive case input works as intended 
+#test if postive case input works as intended 
 def test_reverse_transcribe():
     """
     TODO: Write your unit test for the
@@ -54,7 +54,7 @@ def test_reverse_transcribe():
     expected = 'ACGU'
     assert reverse_transcribe(test_seq) == expected
     
-#test if empty input returns empty 
+#test if empty input returns empty output
 def test_reverse_transcribe_empty():
     test_seq = ''
     expected = ''
