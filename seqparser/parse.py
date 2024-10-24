@@ -123,6 +123,7 @@ class FastqParser(Parser):
         """
         TODO: returns the next fastq record as a 3-tuple of (header, sequence, quality)
         """
+        #reads every 4 lines as 1 entry and seperates into expected format
         header = f_obj.readline().rstrip()
         sequence = f_obj.readline().rstrip()
         sep = f_obj.readline().rstrip()
