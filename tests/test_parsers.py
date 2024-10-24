@@ -54,7 +54,7 @@ def test_FastqParser():
             assert False
     assert True
     
-#test if valid fasta files parses correctly 
+#test if invalid header in fasta file raises error 
 def test_FastaParser_InvalidEntry():
     aparser = FastaParser('data/negtest.fa')
     with pytest.raises(TypeError):
@@ -62,13 +62,14 @@ def test_FastaParser_InvalidEntry():
             pass
     
 
-#test if valid fasta files parses correctly 
+#test if invalid seperation of lines raises error 
 def test_FastqParser_InvalidEntry():
     qparser = FastqParser('data/negtest.fq')
     with pytest.raises(TypeError):
         for record in qparser:
             pass
 
+#test if invalid header in fastq file raises error
 def test_FastqParser_InvalidEntry2():
     qparser = FastqParser('data/negtest2.fq')
     with pytest.raises(TypeError):
